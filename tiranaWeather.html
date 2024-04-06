@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tirana Weather</title>
+    <link rel="stylesheet" href="tiranaWeather.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="menu">
+            <h1>TiranaWeather</h1>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showMsg(this)">Durres</a></li>
+                <li><a href="#" class="active" onclick="showMsg(this)">Lezhe</a></li>
+                <li><a href="#" onclick="showMsg(this)">Fier</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="sect1">
+        <h2>Tirana</h2>
+        <div class="options">
+            <label id= "label" for="temperatures">show temperature in:</label>
+            <select name="temperatures" id="temps" form="tempform" onchange="convertTemp()">
+                <option value="celcius">°C</option>
+                <option value="fahrenheit">°F</option>
+            </select>
+        </div>
+    </div>
+    <div id="border"></div>
+    <div class="weather">
+        <div class="wblock1">
+            <h5>Today</h5>
+            <img class="wimg" src="images/some_rain.png" alt="rain">
+            <p>rain</p>
+            <div class="grades">
+                <h3 class="red">24</h3><span>°</span>
+                <h3 class="blue">18</h3><span>°</span>
+            </div>
+        </div>
+        <div class="wblock2">
+            <h5>Tomorrow</h5>
+            <img class="wimg" src="images/some_sun.png" alt="sun">
+            <p>sun</p>
+            <div class="grades">
+                <h3 class="red">27</h3><span>°</span>
+                <h3 class="blue">19</h3><span>°</span>
+            </div>
+        </div>
+        <div class="wblock3">
+            <h5>Friday</h5>
+            <img class="wimg" src="images/some_clouds.png" alt="Cloud">
+            <p>clouds</p>
+            <div class="grades">
+                <h3 class="red">21</h3><span>°</span>
+                <h3 class="blue">16</h3><span>°</span>
+            </div>
+        </div>
+        <div class="wblock4">
+            <h5>Saturday</h5>
+            <img class="wimg" src="images/some_sun.png" alt="sun">
+            <p>sun</p>
+            <div class="grades">
+                <h3 class="red">26</h3><span>°</span>
+                <h3 class="blue">21</h3><span>°</span>
+            </div>
+        </div>
+    </div>
+    <div class="cookies">
+        <img class="biscuit" src="images/cookie.png" alt="cookie">
+        <div id="texts">
+            <h2>Stop! Cookie time</h2>
+            <h4>We use cookies (sadly not the edible ones) to personalize content and ads, to provide social media features and to analyse our traffic. <a href="#">Read more...</a></h4>
+        </div>
+        <button onclick="dismissCookie()">I Accept</button>
+    </div>
+    <script>
+        //First function - Alert
+
+function showMsg(element){
+    alert("Loading weather report...");
+}
+
+//Dismiss cookies function
+var cookieBox= document.querySelector("div.cookies")
+function dismissCookie(){
+    cookieBox.remove();
+}
+
+// Convert Temperature function
+
+var divLength= document.querySelectorAll('div.grades').length;
+var j = divLength;
+
+function convertTemp() {
+    if (document.getElementById("temps").value == "fahrenheit") {
+        convertf();
+
+    } else {
+        convertc();
+    }
+}
+
+function convertf(){
+    for (i=0; i<j; i++){
+    let x = document.getElementsByClassName("red")[i].innerText * 9 / 5 + 32;
+    document.getElementsByClassName("red")[i].innerText = Math.floor(x);
+    let y = document.getElementsByClassName("blue")[i].innerText * 9 / 5 + 32;
+    document.getElementsByClassName("blue")[i].innerText = Math.ceil(y);
+}}
+function convertc(){
+    for (i=0; i<j; i++){
+    let x = (document.getElementsByClassName("red")[i].innerText - 32) * 5 / 9;
+    document.getElementsByClassName("red")[i].innerText = Math.ceil(x);
+    let y = (document.getElementsByClassName("blue")[i].innerText - 32) * 5 / 9;
+    document.getElementsByClassName("blue")[i].innerText = Math.ceil(y);
+    }}
+
+
+
+
+    </script>
+</body>
+</html>
